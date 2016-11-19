@@ -65,9 +65,22 @@ Using ** is faster without invoking function
 """
 def pre_processor(motor_dict, bike_dict):
     m, b = motor_dict, bike_dict
-    pt1 = b.mr * b.hr ** 2 + b.mf * b.hf ** 2 +  b.Iyyr + b.Iyyf * cos(b.lam)**2
-    pt2 = b.Iyzf*sin(2*b.lam) + b.Izzf*sin(2*b.lam) + b.Izzf*sin(b.lam)**2
-    return pt1 + pt2
+    FyyPrime = b.mf * b.hf ** 2 +  b.Iyyr + b.Iyyf * cos(b.lam)**2 
+    + b.Iyzf*sin(2*b.lam) + b.Izzf*sin(2*b.lam) + b.Izzf*sin(b.lam)**2
+    Mxx = b.Iyyr + b.mr * b.he ** 2 + FyyPrime + b.mf * b.hf ** 2
+    ## mt gt h
+    # parameters not listed
+    mt = b.mf + b.mr
+    # Central point height
+    ht =  (b.mr * b.hr + b.mf * b.hf)/mt
+    # Gravitational constant
+    g = 9.80035 
+    Kxx = mb * ht * g
+    # Mxphi
+    # Flambdaf' + Tyz Cf/Cw
+    Flambdaf = -m.Iyzf * cos(b.lam) - m.Izzf * sin(b.lam) - b.mf * b.hf * b.d
 
+#    Mxp = 
+    return Mxx
 rtn = pre_processor(motor_params, bike_params)
 print rtn

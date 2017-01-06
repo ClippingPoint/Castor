@@ -79,8 +79,28 @@ def pre_processor(motor_dict, bike_dict):
     # Mxphi
     # Flambdaf' + Tyz Cf/Cw
     Flambdaf = -m.Iyzf * cos(b.lam) - m.Izzf * sin(b.lam) - b.mf * b.hf * b.d
-
 #    Mxp = 
     return Mxx
 rtn = pre_processor(motor_params, bike_params)
 print rtn
+
+
+"""
+Constitutional relationships
+"""
+def term_determination(motor_dict, bike_dict):
+  m, b = motor_dict, bike_dict
+  FyyPrime = b.Iyyf * cos(b.lam)**2 + b.Iyzf * sin(2 * b.lam) + b.Izzf * sin(b.lam) ** 2
+  FyzPrime = b.Iyyf * sin(b.lam) * cos(b.lam) - b.Iyzf * cos(2 * b.lam) - b.Izzf * sin(b.lam) * cos(b.lam);
+  FzzPrime = b.Iyyf * sin(b.lam)**2 - b.Iyzf * sin(2 * b.lam) + b.Izzf * cos(b.lam) ** 2
+  mt = b.mr + b.mf
+  ht = (b.mr * b.hr + b.mf * b.hf)/mt
+  lt = (b.mr * b.lr + b.mf * b.lf)/mt
+  Tyy = b.Iyyr + b.mr * b.hr**2 + FyyPrime + b.mf * b.hf ** 2
+  Tzz = b.Izzr + b.mr * b.lr**2 + FzzPrime + b.mf * (b.Cw + b.lf) ** 2
+  """
+  check below reference equation A 11 for Tyz
+  http://ruina.tam.cornell.edu/research/topics/bicycle_mechanics/*FinalBicyclePaperv45wAppendix.pdf
+  """
+  Tyz = b.Iyzr + b.mr * (b.lr * b.hr) + FyzPrime + b.mf * hf * (b.Cw + b.lf)
+  return 0

@@ -128,6 +128,11 @@ def pre_processor(terms, motor_dict, bike_dict, V):
     Cphix = V * (b.Ixx1/b.rf*cos(b.lam) + (b.Ixx1/b.rf + b.Ixx2/b.rr)*b.Cf/b.Cw)
     Kphix = g * t.v
 
+#   steering torque about the steering axis, applied to the front assembly by the sterring motor (control input)
+#    Mphi
+#   An external roll distrubance moment
+#   
+
     return dotdict({
         'Mxx': Mxx,
         'Kxx': Kxx,
@@ -143,7 +148,7 @@ def pre_processor(terms, motor_dict, bike_dict, V):
         'Cphix': Cphix,
         'Kphix': Kphix
       });
-# Velocity
+# Forward Velocity
 V = 1
 rtn = pre_processor(terms, motor_params, bike_params, V)
 print rtn

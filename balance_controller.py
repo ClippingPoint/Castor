@@ -53,7 +53,7 @@ bike_params = {
   'mr': 105.3572,
   'rf': 0.205,
   'rr': 0.205,
-  'lam': 27 #(degree) should we convert it to radius:w
+  'lam': 27 #(degree) should we convert it to radius
 }
 
 """
@@ -119,7 +119,7 @@ def pre_processor(terms, motor_dict, bike_dict, V):
     Mxphi = t.FlamyP + t.Tyz * b.Cf/b.Cw
     Cxphi = V * (t.Tyz * cos(b.lam)/b.Cw - b.Cf/b.Cw * (b.Ixx1/b.rf + b.Ixx2/b.rr) - b.Ixx1/b.rf * cos(b.lam) - t.mt * t.ht * b.Cf / b.Cw)
     Kxphi = V ** 2 * (-cos(b.lam)/b.Cw*(b.Ixx1/b.rf + b.Ixx2/b.rr) - t.mt * t.ht * cos(b.lam)/b.Cw + g * t.v)
-# Sterring equation
+# Steering equation
     Mphiphi = t.FlamlamP + 2 * t.FlamzPP * b.Cf/b.Cw + t.Tzz * (b.Cf/b.Cw) ** 2
     Cphiphi = V * (t.FlamzPP * cos(b.lam)/b.Cw + b.mf * b.d * b.Cf/b.Cw + t.Tzz * b.Cf/b.Cw ** 2 * cos(b.lam) + t.mt * t.lt * (b.Cf/b.Cw) ** 2)
     Kphiphi = V**2 * (b.Ixx1/b.rf * cos(b.lam)/b.Cw * sin(b.lam) + b.mf * b.d * cos(b.lam)/ b.Cw + t.mt * t.lt * b.Cf/b.Cw ** 2 * cos(b.lam)) - g*t.v*sin(b.lam)
@@ -128,10 +128,9 @@ def pre_processor(terms, motor_dict, bike_dict, V):
     Cphix = V * (b.Ixx1/b.rf*cos(b.lam) + (b.Ixx1/b.rf + b.Ixx2/b.rr)*b.Cf/b.Cw)
     Kphix = g * t.v
 
-#   steering torque about the steering axis, applied to the front assembly by the sterring motor (control input)
+#   steering torque about the steering axis, applied to the front assembly by the steering motor (control input)
 #    Mphi
 #   An external roll distrubance moment
-#   
 
     return dotdict({
         'Mxx': Mxx,

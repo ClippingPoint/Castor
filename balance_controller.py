@@ -37,7 +37,7 @@ bike_params = {
   'd': 4.5,
   'hf': 0.4110,
   'hr': 0.4096,
-# Maybe Ixx1 is front wheel moment of inertia?
+# Ixx1 is front wheel moment of inertia?
 # Measured about wheel axle
   'Ixx1': 0.0431,
   'Ixx2': 0.0431,
@@ -53,7 +53,7 @@ bike_params = {
   'mr': 105.3572,
   'rf': 0.205,
   'rr': 0.205,
-  'lam': 27 #(degree) should we convert it to radius
+  'lam': 27 #(degree) convert it to radius
 }
 
 """
